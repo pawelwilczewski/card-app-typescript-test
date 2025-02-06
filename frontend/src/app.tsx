@@ -6,9 +6,9 @@ import NavBar from "@/features/shared/components/nav-bar";
 import { ThemeProvider } from "@/features/theme/context/theme-context";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
-    <section>
+    <div>
       <Router>
         <EntryProvider>
           <ThemeProvider>
@@ -21,6 +21,6 @@ export default function App() {
           </ThemeProvider>
         </EntryProvider>
       </Router>
-    </section>
+    </div>
   );
 }

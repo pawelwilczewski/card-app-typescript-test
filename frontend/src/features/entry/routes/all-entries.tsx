@@ -3,15 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { EntryContext } from "../context/entry-context";
 import { Entry } from "../types/entry";
 
-export default function AllEntries() {
+export default function AllEntries(): JSX.Element {
   const { entries, deleteEntry } = useContext(EntryContext)!;
-  let navigate = useNavigate();
-  if (entries.length == 0) {
+  const navigate = useNavigate();
+  if (entries.length === 0) {
     return (
       <section>
-        <h1 className="text-center font-semibold text-2xl m-5">You don't have any card</h1>
+        <h1 className="text-center font-semibold text-2xl m-5">You don&apos;t have any card</h1>
         <p className="text-center font-medium text-md">
-          Let's{" "}
+          Let&apos;s{" "}
           <Link className="text-primary underline underline-offset-1" to="/create">
             Create One
           </Link>

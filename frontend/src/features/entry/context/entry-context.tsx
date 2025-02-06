@@ -1,6 +1,6 @@
 import { Entry } from "@/features/entry/types/entry";
 import axios from "axios";
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 export const EntryContext = createContext<{
   entries: Entry[];
@@ -12,23 +12,23 @@ export const EntryContext = createContext<{
 export const EntryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [entries, setEntries] = useState<Entry[]>([]);
 
-  const initState = async () => {
-    const data = await axios.get<Entry[]>("http://localhost:3001/get/");
-    const initialStateBody = data.data;
-    setEntries(initialStateBody);
-  };
-
   useEffect(() => {
+    const initState = async (): Promise<void> => {
+      const data = await axios.get<Entry[]>("http://localhost:3001/get/");
+      const initialStateBody = data.data;
+      setEntries(initialStateBody);
+    };
+
     initState();
   }, []);
 
-  const saveEntry = async (entry: Entry) => {
+  const saveEntry = async (entry: Entry): Promise<void> => {
     const requestData = await axios.post<Entry>("http://localhost:3001/create/", entry);
     const newEntry = requestData.data;
     setEntries([...entries, newEntry]);
   };
 
-  const updateEntry = async (id: string, entry: Entry) => {
+  const updateEntry = async (id: string, entry: Entry): Promise<void> => {
     await axios.put<Entry>(`http://localhost:3001/update/${id}`, entry);
     setEntries((entries) => {
       const entryIndex = entries.findIndex((obj) => obj.id == id);
@@ -38,7 +38,7 @@ export const EntryProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     });
   };
 
-  const deleteEntry = async (id: string) => {
+  const deleteEntry = async (id: string): Promise<void> => {
     await axios.delete<Entry>(`http://localhost:3001/delete/${id}`);
     setEntries((e) => e.filter((entry) => entry.id != id));
   };

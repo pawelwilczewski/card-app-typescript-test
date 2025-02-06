@@ -1,9 +1,9 @@
-import { ChangeEvent, MouseEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { EntryContext } from "../context/entry-context";
 import { Entry } from "../types/entry";
 
-export default function EditEntry() {
+export default function EditEntry(): JSX.Element {
   const { id } = useParams();
   const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
 
@@ -11,16 +11,16 @@ export default function EditEntry() {
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
 
   useEffect(() => {
-    const entry = entries.filter((entry) => entry.id == id)[0];
+    const entry = entries.find((entry) => entry.id == id)!;
     setNewEntry(entry);
   }, []);
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setNewEntry({
       ...newEntry,
       [event.target.name]: event.target.value,
     });
   };
-  const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSend = (): void => {
     updateEntry(id as string, newEntry);
   };
   return (
@@ -48,8 +48,8 @@ export default function EditEntry() {
         onChange={handleInputChange}
       />
       <button
-        onClick={(e) => {
-          handleSend(e);
+        onClick={() => {
+          handleSend();
         }}
         className="bg-primary font-semibold p-3 rounded-md"
       >

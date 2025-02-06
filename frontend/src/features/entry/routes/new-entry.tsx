@@ -1,18 +1,18 @@
 import { Entry } from "@/features/entry/types/entry";
-import { ChangeEvent, MouseEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { EntryContext } from "../context/entry-context";
 
-export default function NewEntry() {
+export default function NewEntry(): JSX.Element {
   const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
   const { saveEntry } = useContext(EntryContext)!;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setNewEntry({
       ...newEntry,
       [event.target.name]: event.target.value,
     });
   };
-  const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSend = (): void => {
     saveEntry(newEntry);
     setNewEntry(emptyEntry);
   };
@@ -41,8 +41,8 @@ export default function NewEntry() {
         onChange={handleInputChange}
       />
       <button
-        onClick={(e) => {
-          handleSend(e);
+        onClick={() => {
+          handleSend();
         }}
         className="bg-primary font-semibold p-3 rounded-md"
       >
