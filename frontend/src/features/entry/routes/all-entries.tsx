@@ -1,12 +1,11 @@
-import PrimitiveButton from "@/features/shared/components/primitive-button";
+import EntryView from "@/features/entry/components/entry-view";
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { EntryContext } from "../context/entry-context";
 import { Entry } from "../types/entry";
 
 export default function AllEntries(): JSX.Element {
-  const { entries, deleteEntry } = useContext(EntryContext)!;
-  const navigate = useNavigate();
+  const { entries } = useContext(EntryContext)!;
   if (entries.length === 0) {
     return (
       <section className="container">
@@ -22,39 +21,9 @@ export default function AllEntries(): JSX.Element {
   }
   return (
     <section className="container grid grid-cols-2 md:grid-cols-4">
-      {entries.map((entry: Entry, index: number) => {
-        return (
-          <div
-            id={entry.id}
-            key={index}
-            className="bg-card text-card-foreground m-3 p-4 rounded flex flex-col justify-between"
-          >
-            <h1 className="font-bold text-sm md:text-lg">{entry.title}</h1>
-            <p className="text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>
-            <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
-              <div className="flex justify-center">
-                <PrimitiveButton
-                  onClick={() => {
-                    deleteEntry(entry.id as string);
-                  }}
-                >
-                  ✖
-                </PrimitiveButton>
-                <PrimitiveButton
-                  onClick={() => {
-                    navigate(`/edit/${entry.id}`, { replace: true });
-                  }}
-                >
-                  🖊
-                </PrimitiveButton>
-              </div>
-              <time className="text-right text-sm md:text-lg">
-                {new Date(entry.created_at.toString()).toLocaleDateString()}
-              </time>
-            </section>
-          </div>
-        );
-      })}
+      {entries.map((entry: Entry) => (
+        <EntryView entry={entry} key={entry.id} />
+      ))}
     </section>
   );
 }
