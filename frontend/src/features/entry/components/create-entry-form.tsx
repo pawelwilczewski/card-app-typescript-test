@@ -53,7 +53,9 @@ const CreateEntryForm: React.FC<CreateEntryFormProps> = ({ onSubmitted }) => {
         type="date"
         name="scheduled_at"
         value={
-          newEntry.scheduled_at == null ? undefined : new Date(newEntry.scheduled_at ?? "").toISOString().split("T")[0]
+          newEntry.scheduled_at == undefined
+            ? undefined
+            : new Date(newEntry.scheduled_at ?? "").toISOString().split("T")[0]
         }
         onChange={handleInputChange}
       />

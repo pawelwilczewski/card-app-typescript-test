@@ -55,6 +55,17 @@ const UpdateEntryForm: React.FC<EditEntryFormProps> = ({ entryId, onSubmitted })
           value={new Date(newEntry.created_at).toISOString().split("T")[0]}
           onChange={handleInputChange}
         />
+        <input
+          className="p-3 rounded-md"
+          type="date"
+          name="scheduled_at"
+          value={
+            newEntry.scheduled_at == undefined
+              ? undefined
+              : new Date(newEntry.scheduled_at ?? "").toISOString().split("T")[0]
+          }
+          onChange={handleInputChange}
+        />
         <PrimitiveButton
           onClick={() => {
             handleSend();

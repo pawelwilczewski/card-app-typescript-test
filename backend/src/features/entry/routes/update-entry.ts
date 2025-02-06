@@ -6,6 +6,8 @@ export default async function updateEntryRoute(server: FastifyInstance): Promise
   server.put<{ Params: { id: string }; Body: Entry }>("/update/:id", async (req, reply) => {
     const updatedEntryBody = req.body;
     updatedEntryBody.created_at = updatedEntryBody.created_at ? new Date(req.body.created_at) : new Date();
+    // eslint-disable-next-line unicorn/no-null
+    updatedEntryBody.scheduled_at = updatedEntryBody.scheduled_at ? new Date(req.body.scheduled_at!) : null;
     try {
       await prisma.entry.update({
         data: req.body,
