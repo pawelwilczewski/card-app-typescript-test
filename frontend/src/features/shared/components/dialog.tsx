@@ -2,11 +2,11 @@ import PrimitiveButton from "@/features/shared/components/primitive-button";
 import { ReactElement, ReactNode, cloneElement, useEffect, useRef } from "react";
 import { BiX } from "react-icons/bi";
 
-interface DialogProps {
+type DialogProps = {
   children: ReactNode;
   trigger: ReactElement;
   title: string;
-}
+};
 
 const Dialog: React.FC<DialogProps> = ({ children, trigger, title }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -21,13 +21,13 @@ const Dialog: React.FC<DialogProps> = ({ children, trigger, title }) => {
     return (): void => document.removeEventListener("keydown", handleEscape);
   }, []);
 
-  const handleTriggerClick = () => {
+  const handleTriggerClick = (): void => {
     if (dialogRef.current) {
       dialogRef.current.showModal();
     }
   };
 
-  const handleCloseClick = () => {
+  const handleCloseClick = (): void => {
     if (dialogRef.current) {
       dialogRef.current.close();
     }
