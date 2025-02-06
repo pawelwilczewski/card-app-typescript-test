@@ -30,12 +30,7 @@ export const EntryProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const updateEntry = async (id: string, entry: Entry): Promise<void> => {
     await axios.put<Entry>(`http://localhost:3001/update/${id}`, entry);
-    setEntries((entries) => {
-      const entryIndex = entries.findIndex((obj) => obj.id == id);
-      entries[entryIndex] = entry;
-      console.log(entries);
-      return entries;
-    });
+    setEntries((prevEntries) => prevEntries.map((item) => (item.id === id ? { ...entry } : item)));
   };
 
   const deleteEntry = async (id: string): Promise<void> => {

@@ -1,5 +1,5 @@
 import { Theme } from "@/features/theme/types/theme";
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext<{
   theme: Theme;
@@ -12,7 +12,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   useEffect(() => {
     localStorage.theme = theme;
 
-    const preferenceMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const preferenceMedia = globalThis.matchMedia("(prefers-color-scheme: dark)");
     preferenceMedia.removeEventListener("change", updatePreferenceBodyClass);
 
     switch (theme) {
