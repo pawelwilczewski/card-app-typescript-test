@@ -3,7 +3,7 @@ import { ThemeContext } from "@/features/theme/context/theme-context";
 import { Theme } from "@/features/theme/types/theme";
 import React, { useContext } from "react";
 
-const ThemeSwitch: React.FC = ({}) => {
+const ThemeSwitch: React.FC = () => {
   const { theme, setTheme } = useContext(ThemeContext)!;
 
   const themeToSwitchState: Record<Theme, ThreeWaySwitchState> = {
