@@ -41,6 +41,9 @@ export default [
       "prettier/prettier": "warn",
       "unused-imports/no-unused-imports": "error",
       "unicorn/prevent-abbreviations": "off",
+      "react/prop-types": "off",
+      "unicorn/no-null": "off",
+      "react/react-in-jsx-scope": "off",
     },
   },
 ];
