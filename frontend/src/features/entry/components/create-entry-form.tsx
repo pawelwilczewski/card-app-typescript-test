@@ -8,7 +8,7 @@ type CreateEntryFormProps = {
 };
 
 const CreateEntryForm: React.FC<CreateEntryFormProps> = ({ onSubmitted }) => {
-  const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
+  const emptyEntry: Entry = { title: "", description: "", created_at: new Date(), scheduled_at: undefined };
   const { saveEntry } = useContext(EntryContext)!;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
 
@@ -46,6 +46,15 @@ const CreateEntryForm: React.FC<CreateEntryFormProps> = ({ onSubmitted }) => {
         type="date"
         name="created_at"
         value={new Date(newEntry.created_at).toISOString().split("T")[0]}
+        onChange={handleInputChange}
+      />
+      <input
+        className="p-3 rounded-md"
+        type="date"
+        name="scheduled_at"
+        value={
+          newEntry.scheduled_at == null ? undefined : new Date(newEntry.scheduled_at ?? "").toISOString().split("T")[0]
+        }
         onChange={handleInputChange}
       />
       <PrimitiveButton

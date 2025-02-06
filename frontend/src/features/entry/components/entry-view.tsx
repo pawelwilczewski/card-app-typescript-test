@@ -24,6 +24,13 @@ const EntryView: React.FC<EntryViewProps> = ({ entryId }) => {
       <div className="bg-card text-card-foreground m-3 p-4 rounded flex flex-col justify-between">
         <h1 className="font-bold text-lg break-words overflow-auto">{entry.title}</h1>
         <p className="text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3 whitespace-pre">{entry.description}</p>
+        {entry.scheduled_at && (
+          <>
+            <span className="font-medium">
+              Due: <time>{new Date(entry.scheduled_at!.toString()).toLocaleDateString()}</time>
+            </span>
+          </>
+        )}
         <div className="flex justify-between flex-wrap gap-2">
           <time className="block self-end">{new Date(entry.created_at.toString()).toLocaleDateString()}</time>
           <div className="flex justify-center ml-auto">
