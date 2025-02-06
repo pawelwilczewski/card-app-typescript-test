@@ -1,3 +1,4 @@
+import PrimitiveButton from "@/features/shared/components/primitive-button";
 import React, { useState } from "react";
 
 export type ThreeWaySwitchState = "left" | "middle" | "right";
@@ -48,36 +49,30 @@ const ThreeWaySwitch: React.FC<ThreeWaySwitchProps> = ({
 
   return (
     <div className="flex items-center bg-muted rounded-xl border shadow-inner p-1">
-      <button
+      <PrimitiveButton
+        className={"transition-colors duration-200 ease-out"}
+        variant={state == "left" ? "inverse" : "ghost"}
+        size="small"
         onClick={() => handleClick("left")}
-        className={`flex-1 h-full text-sm font-medium transition-all duration-200 ease-out rounded-lg border p-1 ${
-          state === "left"
-            ? "bg-foreground text-background shadow-sm"
-            : "text-foreground hover:text-muted-foreground border-transparent"
-        }`}
       >
         {childrenArray.length > 0 ? childrenArray[0] : "Left"}
-      </button>
-      <button
+      </PrimitiveButton>
+      <PrimitiveButton
+        className={"transition-colors duration-200 ease-out"}
+        variant={state == "middle" ? "inverse" : "ghost"}
+        size="small"
         onClick={() => handleClick("middle")}
-        className={`flex-1 h-full text-sm font-medium transition-all duration-200 ease-out mx-1 rounded-lg border p-1 ${
-          state === "middle"
-            ? "bg-foreground text-background shadow-sm"
-            : "text-foreground hover:text-muted-foreground border-transparent"
-        }`}
       >
         {childrenArray.length > 1 ? childrenArray[1] : "Middle"}
-      </button>
-      <button
+      </PrimitiveButton>
+      <PrimitiveButton
+        className={"transition-colors duration-200 ease-out"}
+        variant={state == "right" ? "inverse" : "ghost"}
+        size="small"
         onClick={() => handleClick("right")}
-        className={`flex-1 h-full text-sm font-medium transition-all duration-200 ease-out rounded-lg border p-1 ${
-          state === "right"
-            ? "bg-foreground text-background shadow-sm"
-            : "text-foreground hover:text-muted-foreground border-transparent"
-        }`}
       >
         {childrenArray.length > 2 ? childrenArray[2] : "Right"}
-      </button>
+      </PrimitiveButton>
     </div>
   );
 };

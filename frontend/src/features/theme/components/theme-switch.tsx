@@ -14,7 +14,7 @@ const ThemeSwitch: React.FC = ({}) => {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="font-medium">Theme</span>
+      <span className="text-sm font-medium">Theme</span>
       <ThreeWaySwitch
         initialState={themeToSwitchState[theme]}
         onLeft={() => setTheme("light")}
