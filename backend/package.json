@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register ./src/app.ts",
-    "dev": "nodemon -r tsconfig-paths/register -e ts,prisma,sql ./src/app.ts",
+    "dev": "dotenv -e .env -- nodemon -r tsconfig-paths/register -e ts,prisma,sql ./src/app.ts",
     "test": "jest --config=jest.config.ts --testPathPattern=test/",
     "prisma-setup": "prisma migrate dev && prisma generate"
   },
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.1",
     "dotenv": "^16.4.7",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9.19.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-unicorn": "^56.0.1",
