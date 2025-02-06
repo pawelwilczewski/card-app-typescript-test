@@ -1,7 +1,7 @@
 import {useState, useContext, ChangeEvent, MouseEvent, useEffect} from 'react'
-import {useParams, useNavigate} from 'react-router-dom'
-import {EntryContext} from '../utilities/globalContext'
-import {Entry, EntryContextType} from '../@types/context'
+import {useParams} from 'react-router-dom'
+import {EntryContext, EntryContextType} from '../context/EntryContext'
+import {Entry} from '../types/Entry'
 
 export default function EditEntry(){
     const {id} = useParams()

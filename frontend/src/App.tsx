@@ -1,9 +1,9 @@
 import React from "react";
-import NavBar from './components/NavBar'
-import AllEntries from './routes/AllEntries'
-import NewEntry from './routes/NewEntry'
-import EditEntry from './routes/EditEntry'
-import { EntryProvider } from './utilities/globalContext'
+import NavBar from './features/shared/components/NavBar'
+import AllEntries from './features/entry/routes/AllEntries'
+import NewEntry from './features/entry/routes/NewEntry'
+import EditEntry from './features/entry/routes/EditEntry'
+import { EntryProvider } from './features/entry/context/EntryContext'
 import {
   BrowserRouter as Router,
   Routes,
@@ -27,6 +27,5 @@ export default function App() {
     </EntryProvider>
     </Router>
     </section>
-    
   );
 }

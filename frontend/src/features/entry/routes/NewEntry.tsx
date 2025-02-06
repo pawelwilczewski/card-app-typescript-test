@@ -1,6 +1,6 @@
 import {useState, useContext, ChangeEvent, MouseEvent} from 'react'
-import {EntryContext} from '../utilities/globalContext'
-import {Entry, EntryContextType} from '../@types/context'
+import {EntryContext, EntryContextType} from '../context/EntryContext'
+import { Entry } from '../types/Entry'
 
 export default function NewEntry(){
     const emptyEntry: Entry = {title: "", description: "",created_at: new Date()}

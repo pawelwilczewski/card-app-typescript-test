@@ -1,6 +1,13 @@
 import {createContext , useState, FC, ReactNode, useEffect} from 'react'
-import {Entry, EntryContextType} from '../@types/context'
 import axios from 'axios'
+import { Entry } from '../types/Entry';
+
+export type EntryContextType = {
+  entries: Entry[];
+  saveEntry: (entry: Entry) => void;
+  updateEntry: (id: string, entryData: Entry) => void;
+  deleteEntry: (id: string) => void;
+};
 
 export const EntryContext = createContext<EntryContextType | null>(null);
 
@@ -32,10 +39,12 @@ export const EntryProvider: React.FC<{children : ReactNode}> = ({children}) => {
           return entries
         })
     }
+  
     const deleteEntry = async (id: string) => {
         await axios.delete<Entry>(`http://localhost:3001/delete/${id}`)
         setEntries(e => e.filter(entry => entry.id != id))
     }
+  
     return (
         <EntryContext.Provider value={{ entries, saveEntry, updateEntry, deleteEntry }}>
           {children}

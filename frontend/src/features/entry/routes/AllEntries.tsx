@@ -1,6 +1,6 @@
 import {useContext} from 'react'
-import { EntryContext } from '../utilities/globalContext'
-import { EntryContextType, Entry } from '../@types/context'
+import { EntryContext, EntryContextType } from '../context/EntryContext'
+import { Entry } from '../types/Entry'
 import { useNavigate, Link } from "react-router-dom";
 
 export default function AllEntries(){
