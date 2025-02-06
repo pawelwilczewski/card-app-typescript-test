@@ -1,8 +1,8 @@
-import {createContext , useState, FC, ReactNode, useEffect} from 'react'
+import {createContext , useState, ReactNode, useEffect, useContext} from 'react'
 import axios from 'axios'
 import { Entry } from '@/features/entry/types/entry';
 
-export type EntryContextType = {
+type EntryContextType = {
   entries: Entry[];
   saveEntry: (entry: Entry) => void;
   updateEntry: (id: string, entryData: Entry) => void;
@@ -10,6 +10,8 @@ export type EntryContextType = {
 };
 
 export const EntryContext = createContext<EntryContextType | null>(null);
+
+export const useEntryContext = () => useContext(EntryContext) as EntryContextType;
 
 export const EntryProvider: React.FC<{children : ReactNode}> = ({children}) => {
     const [entries, setEntries] = useState<Entry[]>([]);
@@ -51,4 +53,3 @@ export const EntryProvider: React.FC<{children : ReactNode}> = ({children}) => {
         </EntryContext.Provider>
       )
 }
-

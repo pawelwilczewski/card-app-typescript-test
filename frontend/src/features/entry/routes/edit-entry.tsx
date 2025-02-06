@@ -1,14 +1,14 @@
 import {useState, useContext, ChangeEvent, MouseEvent, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import {EntryContext, EntryContextType} from '../context/entry-context'
+import {useEntryContext} from '../context/entry-context'
 import {Entry} from '../types/entry'
 
 export default function EditEntry(){
     const {id} = useParams()
     const emptyEntry: Entry = {title: "", description: "",created_at: new Date()}
 
-    const { updateEntry, entries } = useContext(EntryContext) as EntryContextType
-    const [newEntry,setNewEntry] = useState<Entry>(emptyEntry)
+    const { updateEntry, entries } = useEntryContext();
+    const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
 
     useEffect(() =>{
         const entry = entries.filter(entry=> entry.id == id)[0]
