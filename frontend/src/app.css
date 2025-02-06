@@ -1,3 +1,83 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 14.1%;
+
+    --primary: 0 79% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 93.7%;
+    --secondary-foreground: 0 0% 14.1%;
+
+    --muted: 0 0% 93.7%;
+    --muted-foreground: 0 0% 14.1%;
+
+    --destructive: 0 79% 47%;
+    --destructive-foreground: 0 0% 100%;
+
+    --card: 44 97% 54%;
+    --card-foreground: 0 0% 3.9%;
+
+    --border: 0 0% 85%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --primary: 359 73% 49%;
+    --primary-foreground: 0 85.7% 97.3%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --card: 44 97% 54%;
+    --card-foreground: 0 0% 3.9%;
+
+    --border: 0 0% 14.9%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-base text-foreground;
+  }
+
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-4xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+
+  h4 {
+    @apply text-2xl;
+  }
+
+  h5 {
+    @apply text-sm font-bold text-primary;
+  }
+
+  input {
+    @apply bg-background ring-1 ring-muted;
+  }
+
+  textarea {
+    @apply bg-background ring-1 ring-muted;
+  }
+}

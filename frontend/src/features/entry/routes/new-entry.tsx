@@ -17,7 +17,7 @@ export default function NewEntry() {
     setNewEntry(emptyEntry);
   };
   return (
-    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 bg-gray-300 p-8 rounded-md">
+    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md">
       <input
         className="p-3 rounded-md"
         type="text"
@@ -44,7 +44,7 @@ export default function NewEntry() {
         onClick={(e) => {
           handleSend(e);
         }}
-        className="bg-blue-400 hover:bg-blue-600 font-semibold text-white p-3 rounded-md"
+        className="bg-primary font-semibold p-3 rounded-md"
       >
         Create
       </button>
