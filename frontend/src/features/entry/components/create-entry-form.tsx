@@ -61,6 +61,7 @@ const CreateEntryForm: React.FC<CreateEntryFormProps> = ({ onSubmitted }) => {
           value={
             newEntry.scheduled_at == undefined ? undefined : dateOnlyToString(new Date(newEntry.scheduled_at ?? ""))
           }
+          min={dateOnlyToString(new Date())}
           onChange={handleInputChange}
         />
       </div>
