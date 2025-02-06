@@ -2,14 +2,12 @@ import { Entry } from "@/features/entry/types/entry";
 import axios from "axios";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-type EntryContextType = {
+export const EntryContext = createContext<{
   entries: Entry[];
   saveEntry: (entry: Entry) => void;
   updateEntry: (id: string, entryData: Entry) => void;
   deleteEntry: (id: string) => void;
-};
-
-export const EntryContext = createContext<EntryContextType | null>(null);
+} | null>(null);
 
 export const EntryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [entries, setEntries] = useState<Entry[]>([]);

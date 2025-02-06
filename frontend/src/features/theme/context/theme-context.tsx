@@ -1,13 +1,10 @@
+import { Theme } from "@/features/theme/types/theme";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-type Theme = "auto" | "light" | "dark";
-
-type ThemeContextType = {
+export const ThemeContext = createContext<{
   theme: Theme;
   setTheme: (theme: Theme) => void;
-};
-
-export const ThemeContext = createContext<ThemeContextType | null>(null);
+} | null>(null);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>("auto");
