@@ -1,9 +1,10 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useEntryContext } from "../context/entry-context";
+import { EntryContext } from "../context/entry-context";
 import { Entry } from "../types/entry";
 
 export default function AllEntries() {
-  const { entries, deleteEntry } = useEntryContext();
+  const { entries, deleteEntry } = useContext(EntryContext)!;
   let navigate = useNavigate();
   if (entries.length == 0) {
     return (

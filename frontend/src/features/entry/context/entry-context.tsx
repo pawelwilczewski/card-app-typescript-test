@@ -11,8 +11,6 @@ type EntryContextType = {
 
 export const EntryContext = createContext<EntryContextType | null>(null);
 
-export const useEntryContext = () => useContext(EntryContext) as EntryContextType;
-
 export const EntryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [entries, setEntries] = useState<Entry[]>([]);
 

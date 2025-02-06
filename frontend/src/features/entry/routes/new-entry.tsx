@@ -1,10 +1,10 @@
 import { Entry } from "@/features/entry/types/entry";
 import { ChangeEvent, MouseEvent, useContext, useState } from "react";
-import { useEntryContext } from "../context/entry-context";
+import { EntryContext } from "../context/entry-context";
 
 export default function NewEntry() {
   const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
-  const { saveEntry } = useEntryContext();
+  const { saveEntry } = useContext(EntryContext)!;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewEntry({
