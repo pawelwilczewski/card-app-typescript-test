@@ -89,10 +89,10 @@
   }
 
   input {
-    @apply bg-background ring-1 ring-muted;
+    @apply bg-background ring-1 ring-muted p-3 rounded-md w-full;
   }
 
   textarea {
-    @apply bg-background ring-1 ring-muted;
+    @apply bg-background ring-1 ring-muted p-3 rounded-md;
   }
 }

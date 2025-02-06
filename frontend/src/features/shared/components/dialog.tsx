@@ -59,7 +59,7 @@ const Dialog = forwardRef<HTMLDialogElement, DialogProps>(({ children, trigger, 
           </PrimitiveButton>
         </div>
 
-        <div className="overflow-y-auto max-h-[70vh]">{children}</div>
+        <div className="overflow-y-auto max-h-[70vh] p-1">{children}</div>
       </dialog>
     </>
   );
