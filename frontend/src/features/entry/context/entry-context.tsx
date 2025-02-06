@@ -1,6 +1,6 @@
 import {createContext , useState, FC, ReactNode, useEffect} from 'react'
 import axios from 'axios'
-import { Entry } from '../types/Entry';
+import { Entry } from '@/features/entry/types/entry';
 
 export type EntryContextType = {
   entries: Entry[];

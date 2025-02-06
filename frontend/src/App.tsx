@@ -1,9 +1,8 @@
-import React from "react";
-import NavBar from './features/shared/components/NavBar'
-import AllEntries from './features/entry/routes/AllEntries'
-import NewEntry from './features/entry/routes/NewEntry'
-import EditEntry from './features/entry/routes/EditEntry'
-import { EntryProvider } from './features/entry/context/EntryContext'
+import NavBar from './features/shared/components/nav-bar'
+import AllEntries from './features/entry/routes/all-entries'
+import NewEntry from './features/entry/routes/new-entry'
+import EditEntry from './features/entry/routes/edit-entry'
+import { EntryProvider } from './features/entry/context/entry-context'
 import {
   BrowserRouter as Router,
   Routes,
