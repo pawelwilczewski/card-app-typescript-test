@@ -1,7 +1,7 @@
 import prisma from "@/db";
 import { FastifyInstance } from "fastify";
 
-export default async function deleteEntryRoute(server: FastifyInstance) {
+export default async function deleteEntryRoute(server: FastifyInstance): Promise<void> {
   server.delete<{ Params: { id: string } }>("/delete/:id", async (req, reply) => {
     try {
       await prisma.entry.delete({ where: { id: req.params.id } });

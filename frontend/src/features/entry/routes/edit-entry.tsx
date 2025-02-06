@@ -1,30 +1,31 @@
-import { ChangeEvent, MouseEvent, useContext, useEffect, useState } from "react";
+import PrimitiveButton from "@/features/shared/components/primitive-button";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEntryContext } from "../context/entry-context";
+import { EntryContext } from "../context/entry-context";
 import { Entry } from "../types/entry";
 
-export default function EditEntry() {
+export default function EditEntry(): JSX.Element {
   const { id } = useParams();
   const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
 
-  const { updateEntry, entries } = useEntryContext();
+  const { updateEntry, entries } = useContext(EntryContext)!;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
 
   useEffect(() => {
-    const entry = entries.filter((entry) => entry.id == id)[0];
+    const entry = entries.find((entry) => entry.id == id)!;
     setNewEntry(entry);
   }, []);
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setNewEntry({
       ...newEntry,
       [event.target.name]: event.target.value,
     });
   };
-  const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSend = (): void => {
     updateEntry(id as string, newEntry);
   };
   return (
-    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 bg-gray-300 p-8 rounded-md">
+    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md">
       <input
         className="p-3 rounded-md"
         type="text"
@@ -47,14 +48,14 @@ export default function EditEntry() {
         value={new Date(newEntry.created_at).toISOString().split("T")[0]}
         onChange={handleInputChange}
       />
-      <button
-        onClick={(e) => {
-          handleSend(e);
+      <PrimitiveButton
+        onClick={() => {
+          handleSend();
         }}
-        className="bg-blue-400 hover:bg-blue-600 font-semibold text-white p-3 rounded-md"
+        className="bg-primary font-semibold p-3 rounded-md"
       >
         Update
-      </button>
+      </PrimitiveButton>
     </section>
   );
 }

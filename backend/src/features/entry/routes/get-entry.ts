@@ -2,7 +2,7 @@ import prisma from "@/db";
 import { Entry } from "@prisma/client";
 import { FastifyInstance } from "fastify";
 
-export default async function getEntryRoute(server: FastifyInstance) {
+export default async function getEntryRoute(server: FastifyInstance): Promise<void> {
   server.get<{ Body: Entry; Params: { id: string } }>("/get/:id", async (req, reply) => {
     const dbEntry = await prisma.entry.findUnique({
       where: { id: req.params.id },

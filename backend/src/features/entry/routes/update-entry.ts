@@ -2,12 +2,10 @@ import prisma from "@/db";
 import { Entry } from "@prisma/client";
 import { FastifyInstance } from "fastify";
 
-export default async function updateEntryRoute(server: FastifyInstance) {
+export default async function updateEntryRoute(server: FastifyInstance): Promise<void> {
   server.put<{ Params: { id: string }; Body: Entry }>("/update/:id", async (req, reply) => {
-    let updatedEntryBody = req.body;
-    updatedEntryBody.created_at
-      ? (updatedEntryBody.created_at = new Date(req.body.created_at))
-      : (updatedEntryBody.created_at = new Date());
+    const updatedEntryBody = req.body;
+    updatedEntryBody.created_at = updatedEntryBody.created_at ? new Date(req.body.created_at) : new Date();
     try {
       await prisma.entry.update({
         data: req.body,

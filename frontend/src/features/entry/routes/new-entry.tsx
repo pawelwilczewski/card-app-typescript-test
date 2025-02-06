@@ -1,23 +1,24 @@
 import { Entry } from "@/features/entry/types/entry";
-import { ChangeEvent, MouseEvent, useContext, useState } from "react";
-import { useEntryContext } from "../context/entry-context";
+import PrimitiveButton from "@/features/shared/components/primitive-button";
+import { ChangeEvent, useContext, useState } from "react";
+import { EntryContext } from "../context/entry-context";
 
-export default function NewEntry() {
+export default function NewEntry(): JSX.Element {
   const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
-  const { saveEntry } = useEntryContext();
+  const { saveEntry } = useContext(EntryContext)!;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setNewEntry({
       ...newEntry,
       [event.target.name]: event.target.value,
     });
   };
-  const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSend = (): void => {
     saveEntry(newEntry);
     setNewEntry(emptyEntry);
   };
   return (
-    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 bg-gray-300 p-8 rounded-md">
+    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md">
       <input
         className="p-3 rounded-md"
         type="text"
@@ -40,14 +41,14 @@ export default function NewEntry() {
         value={new Date(newEntry.created_at).toISOString().split("T")[0]}
         onChange={handleInputChange}
       />
-      <button
-        onClick={(e) => {
-          handleSend(e);
+      <PrimitiveButton
+        onClick={() => {
+          handleSend();
         }}
-        className="bg-blue-400 hover:bg-blue-600 font-semibold text-white p-3 rounded-md"
+        className="bg-primary font-semibold p-3 rounded-md"
       >
         Create
-      </button>
+      </PrimitiveButton>
     </section>
   );
 }
