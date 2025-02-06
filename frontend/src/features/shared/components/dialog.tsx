@@ -1,5 +1,5 @@
 import PrimitiveButton from "@/features/shared/components/primitive-button";
-import { ReactElement, ReactNode, cloneElement, useEffect, useRef } from "react";
+import { ReactElement, ReactNode, cloneElement, forwardRef, useEffect, useRef } from "react";
 import { BiX } from "react-icons/bi";
 
 type DialogProps = {
@@ -8,8 +8,18 @@ type DialogProps = {
   title: string;
 };
 
-const Dialog: React.FC<DialogProps> = ({ children, trigger, title }) => {
+const Dialog = forwardRef<HTMLDialogElement, DialogProps>(({ children, trigger, title }, ref) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (ref) {
+      if (typeof ref === "function") {
+        ref(dialogRef.current);
+      } else {
+        ref.current = dialogRef.current;
+      }
+    }
+  }, [ref]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent): void => {
@@ -56,6 +66,8 @@ const Dialog: React.FC<DialogProps> = ({ children, trigger, title }) => {
       </dialog>
     </>
   );
-};
+});
+
+Dialog.displayName = "Dialog";
 
 export default Dialog;

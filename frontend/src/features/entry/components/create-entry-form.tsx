@@ -3,22 +3,29 @@ import PrimitiveButton from "@/features/shared/components/primitive-button";
 import { ChangeEvent, useContext, useState } from "react";
 import { EntryContext } from "../context/entry-context";
 
-export default function NewEntry(): JSX.Element {
+type CreateEntryFormProps = {
+  onSubmitted: () => void;
+};
+
+const CreateEntryForm: React.FC<CreateEntryFormProps> = ({ onSubmitted }) => {
   const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
   const { saveEntry } = useContext(EntryContext)!;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setNewEntry({
       ...newEntry,
       [event.target.name]: event.target.value,
     });
   };
+
   const handleSend = (): void => {
     saveEntry(newEntry);
     setNewEntry(emptyEntry);
   };
+
   return (
-    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md">
+    <section className="flex justify-center flex-col w-fit ml-auto mr-auto gap-5 my-2 rounded-md">
       <input
         className="p-3 rounded-md"
         type="text"
@@ -44,6 +51,7 @@ export default function NewEntry(): JSX.Element {
       <PrimitiveButton
         onClick={() => {
           handleSend();
+          onSubmitted();
         }}
         className="bg-primary font-semibold p-3 rounded-md"
       >
@@ -51,4 +59,6 @@ export default function NewEntry(): JSX.Element {
       </PrimitiveButton>
     </section>
   );
-}
+};
+
+export default CreateEntryForm;
