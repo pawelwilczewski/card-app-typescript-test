@@ -1,3 +1,4 @@
+import PrimitiveButton from "@/features/shared/components/primitive-button";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { EntryContext } from "../context/entry-context";
@@ -47,14 +48,14 @@ export default function EditEntry(): JSX.Element {
         value={new Date(newEntry.created_at).toISOString().split("T")[0]}
         onChange={handleInputChange}
       />
-      <button
+      <PrimitiveButton
         onClick={() => {
           handleSend();
         }}
         className="bg-primary font-semibold p-3 rounded-md"
       >
         Update
-      </button>
+      </PrimitiveButton>
     </section>
   );
 }

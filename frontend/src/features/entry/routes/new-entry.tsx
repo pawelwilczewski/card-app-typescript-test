@@ -1,4 +1,5 @@
 import { Entry } from "@/features/entry/types/entry";
+import PrimitiveButton from "@/features/shared/components/primitive-button";
 import { ChangeEvent, useContext, useState } from "react";
 import { EntryContext } from "../context/entry-context";
 
@@ -40,14 +41,14 @@ export default function NewEntry(): JSX.Element {
         value={new Date(newEntry.created_at).toISOString().split("T")[0]}
         onChange={handleInputChange}
       />
-      <button
+      <PrimitiveButton
         onClick={() => {
           handleSend();
         }}
         className="bg-primary font-semibold p-3 rounded-md"
       >
         Create
-      </button>
+      </PrimitiveButton>
     </section>
   );
 }

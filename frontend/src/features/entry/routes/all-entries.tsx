@@ -1,3 +1,4 @@
+import PrimitiveButton from "@/features/shared/components/primitive-button";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { EntryContext } from "../context/entry-context";
@@ -32,22 +33,20 @@ export default function AllEntries(): JSX.Element {
             <p className="text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>
             <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
               <div className="flex justify-center">
-                <button
+                <PrimitiveButton
                   onClick={() => {
                     deleteEntry(entry.id as string);
                   }}
-                  className="m-1 md:m-2 p-1 font-semibold rounded-md ring-1"
                 >
                   ✖
-                </button>
-                <button
+                </PrimitiveButton>
+                <PrimitiveButton
                   onClick={() => {
                     navigate(`/edit/${entry.id}`, { replace: true });
                   }}
-                  className="m-1 md:m-2 p-1 font-semibold rounded-md ring-1"
                 >
                   🖊
-                </button>
+                </PrimitiveButton>
               </div>
               <time className="text-right text-sm md:text-lg">
                 {new Date(entry.created_at.toString()).toLocaleDateString()}
