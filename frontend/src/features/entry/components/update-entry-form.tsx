@@ -1,4 +1,5 @@
 import PrimitiveButton from "@/features/shared/components/primitive-button";
+import { dateOnlyToString } from "@/features/shared/utils/formatting/date-formatter";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { EntryContext } from "../context/entry-context";
 import { Entry } from "../types/entry";
@@ -33,28 +34,45 @@ const UpdateEntryForm: React.FC<EditEntryFormProps> = ({ entryId, onSubmitted })
   return (
     newEntry && (
       <section className="flex justify-center flex-col w-fit ml-auto mr-auto gap-5 my-2 rounded-md">
-        <input
-          className="p-3 rounded-md"
-          type="text"
-          placeholder="Title"
-          name="title"
-          value={newEntry.title}
-          onChange={handleInputChange}
-        />
-        <textarea
-          className="p-3 rounded-md"
-          placeholder="Description"
-          name="description"
-          value={newEntry.description}
-          onChange={handleInputChange}
-        />
-        <input
-          className="p-3 rounded-md"
-          type="date"
-          name="created_at"
-          value={new Date(newEntry.created_at).toISOString().split("T")[0]}
-          onChange={handleInputChange}
-        />
+        <div>
+          <div className="font-medium mb-1">Title</div>
+          <input type="text" placeholder="Title" name="title" value={newEntry.title} onChange={handleInputChange} />
+        </div>
+
+        <div>
+          <div className="font-medium mb-1">Description</div>
+          <textarea
+            className="w-72"
+            placeholder="Description"
+            name="description"
+            value={newEntry.description}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div>
+          <div className="font-medium mb-1">Created on</div>
+          <input
+            type="date"
+            name="created_at"
+            value={dateOnlyToString(new Date(newEntry.created_at))}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div>
+          <div className="font-medium mb-1">Scheduled on</div>
+          <input
+            type="date"
+            name="scheduled_at"
+            value={
+              newEntry.scheduled_at == undefined ? undefined : dateOnlyToString(new Date(newEntry.scheduled_at ?? ""))
+            }
+            min={dateOnlyToString(new Date())}
+            onChange={handleInputChange}
+          />
+        </div>
+
         <PrimitiveButton
           onClick={() => {
             handleSend();
