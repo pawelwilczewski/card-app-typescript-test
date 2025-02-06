@@ -3,4 +3,5 @@ export interface Entry {
   title: string;
   description: string;
   created_at: Date | string;
+  scheduled_at?: Date | string;
 }
