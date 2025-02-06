@@ -33,7 +33,7 @@ const EntryView: React.FC<EntryViewProps> = ({ entry }) => {
           <PrimitiveButton
             variant="ghost"
             size="small"
-            className="!text-card-foreground hover:bg-card-foreground hover:!text-primary-foreground"
+            className="!text-card-foreground hover:!bg-destructive hover:!text-destructive-foreground"
             onClick={() => {
               deleteEntry(entry.id as string);
             }}
