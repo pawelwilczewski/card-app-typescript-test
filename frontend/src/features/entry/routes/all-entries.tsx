@@ -1,6 +1,7 @@
 import EntryView from "@/features/entry/components/entry-view";
+import PrimitiveButton from "@/features/shared/components/primitive-button";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { EntryContext } from "../context/entry-context";
 import { Entry } from "../types/entry";
 
@@ -20,10 +21,17 @@ export default function AllEntries(): JSX.Element {
     );
   }
   return (
-    <section className="container grid grid-cols-2 md:grid-cols-4">
-      {entries.map((entry: Entry) => (
-        <EntryView entry={entry} key={entry.id} />
-      ))}
-    </section>
+    <>
+      <section className="container">
+        <NavLink to="/create" className="block w-fit ml-auto">
+          <PrimitiveButton size="large">New Entry</PrimitiveButton>
+        </NavLink>
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {entries.map((entry: Entry) => (
+            <EntryView entry={entry} key={entry.id} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

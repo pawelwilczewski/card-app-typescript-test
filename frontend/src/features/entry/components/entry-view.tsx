@@ -16,9 +16,10 @@ const EntryView: React.FC<EntryViewProps> = ({ entry }) => {
     <div className="bg-card text-card-foreground m-3 p-4 rounded flex flex-col justify-between">
       <h1 className="font-bold text-sm md:text-lg">{entry.title}</h1>
       <p className="text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>
-      <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
+      <div className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
         <div className="flex justify-center">
           <PrimitiveButton
+            variant="ghost"
             onClick={() => {
               deleteEntry(entry.id as string);
             }}
@@ -26,6 +27,7 @@ const EntryView: React.FC<EntryViewProps> = ({ entry }) => {
             ✖
           </PrimitiveButton>
           <PrimitiveButton
+            variant="ghost"
             onClick={() => {
               navigate(`/edit/${entry.id}`, { replace: true });
             }}
@@ -36,7 +38,7 @@ const EntryView: React.FC<EntryViewProps> = ({ entry }) => {
         <time className="text-right text-sm md:text-lg">
           {new Date(entry.created_at.toString()).toLocaleDateString()}
         </time>
-      </section>
+      </div>
     </div>
   );
 };
