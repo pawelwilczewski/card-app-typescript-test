@@ -1,6 +1,5 @@
 import { EntryProvider } from "@/features/entry/context/entry-context";
 import AllEntries from "@/features/entry/routes/all-entries";
-import EditEntry from "@/features/entry/routes/edit-entry";
 import Footer from "@/features/shared/components/footer";
 import NavBar from "@/features/shared/components/nav-bar";
 import { ThemeProvider } from "@/features/theme/context/theme-context";
@@ -16,7 +15,6 @@ export default function App(): JSX.Element {
             <main>
               <Routes>
                 <Route path="/" element={<AllEntries />}></Route>
-                <Route path="edit/:id" element={<EditEntry />}></Route>
               </Routes>
             </main>
             <Footer />

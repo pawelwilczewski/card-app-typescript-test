@@ -49,10 +49,7 @@ const Dialog = forwardRef<HTMLDialogElement, DialogProps>(({ children, trigger, 
         onClick: handleTriggerClick,
       })}
 
-      <dialog
-        ref={dialogRef}
-        className="text-foreground rounded-lg shadow-lg w-full border max-w-md mx-auto bg-background"
-      >
+      <dialog ref={dialogRef} className="text-foreground rounded-lg shadow-lg border mx-auto bg-background">
         <div className="flex justify-between items-center mb-4">
           <h2 id="dialog-title" className="text-xl font-semibold">
             {title}
