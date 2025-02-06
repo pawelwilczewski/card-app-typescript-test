@@ -8,6 +8,11 @@ export default async function updateEntryRoute(server: FastifyInstance): Promise
     updatedEntryBody.created_at = updatedEntryBody.created_at ? new Date(req.body.created_at) : new Date();
     // eslint-disable-next-line unicorn/no-null
     updatedEntryBody.scheduled_at = updatedEntryBody.scheduled_at ? new Date(req.body.scheduled_at!) : null;
+    if (updatedEntryBody.scheduled_at && updatedEntryBody.scheduled_at < new Date()) {
+      reply.status(400).send({ msg: "Scheduled date can't be in the past." });
+      return;
+    }
+
     try {
       await prisma.entry.update({
         data: req.body,
