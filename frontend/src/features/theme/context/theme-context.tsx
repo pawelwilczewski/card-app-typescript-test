@@ -7,16 +7,7 @@ export const ThemeContext = createContext<{
 } | null>(null);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>("auto");
-
-  useEffect(() => {
-    const currentTheme = localStorage.theme as Theme | undefined;
-    if (!currentTheme) {
-      setTheme("auto");
-      return;
-    }
-    setTheme(currentTheme as Theme);
-  }, []);
+  const [theme, setTheme] = useState<Theme>(localStorage.theme ?? "auto");
 
   useEffect(() => {
     localStorage.theme = theme;

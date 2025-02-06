@@ -8,7 +8,7 @@ export default function AllEntries(): JSX.Element {
   const navigate = useNavigate();
   if (entries.length === 0) {
     return (
-      <section>
+      <section className="container">
         <h1 className="text-center font-semibold text-2xl m-5">You don&apos;t have any card</h1>
         <p className="text-center font-medium text-md">
           Let&apos;s{" "}
@@ -20,7 +20,7 @@ export default function AllEntries(): JSX.Element {
     );
   }
   return (
-    <section className="grid grid-cols-2 md:grid-cols-4">
+    <section className="container grid grid-cols-2 md:grid-cols-4">
       {entries.map((entry: Entry, index: number) => {
         return (
           <div

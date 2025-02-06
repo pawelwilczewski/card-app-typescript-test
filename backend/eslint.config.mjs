@@ -38,6 +38,7 @@ export default [
       "prettier/prettier": "warn",
       "unused-imports/no-unused-imports": "error",
       "unicorn/prevent-abbreviations": "off",
+      "unicorn/no-nested-ternary": "off",
     },
   },
 ];
