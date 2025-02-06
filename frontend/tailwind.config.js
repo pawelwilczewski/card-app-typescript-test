@@ -9,6 +9,10 @@ module.exports = {
           "2xl": "1400px",
         },
       },
+      fontFamily: {
+        cookie: ["Cookie", "serif"],
+        xanh: ["Xanh Mono", "serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",
